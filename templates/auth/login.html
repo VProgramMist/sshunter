@@ -1,0 +1,39 @@
+{% extends "auth/base.html" %}
+
+{% block content %}
+    <div class="column is-4 is-offset-4">
+        <div class="box">
+            <h3 class="title">Вход</h3>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="notification is-danger">
+                        {{ messages[0] }}
+                    </div>
+                {% endif %}
+            {% endwith %}
+            <form method="POST" action="/login">
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-medium" type="text" name="login" placeholder="Введите логин"
+                               autofocus="">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-medium" type="password" name="password" placeholder="Введите пароль">
+                    </div>
+                </div>
+                <div class="field">
+                    <input type="checkbox" class="custom-checkbox" id="happy" name="happy" value="yes">
+                    <label class="checkbox" for="happy">
+                        Запомнить меня
+                    </label>
+                </div>
+                <button class="button is-block is-info is-medium is-fullwidth">Войти</button>
+                <br>
+                Ещё не зарегистрированы? <a href="{{ url_for('auth.signup') }}" class="orange-link">Создать аккаунт</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

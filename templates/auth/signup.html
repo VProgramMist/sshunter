@@ -1,0 +1,114 @@
+{% extends "auth/base.html" %}
+
+{% block content %}
+    <div class="column is-4 is-offset-4">
+        <div class="box">
+            <h3 class="title">Регистрация</h3>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="notification is-danger">
+                        {{ messages[0] }}. Пожалуйста, перейдите на <a href="{{ url_for('auth.login') }}">страницу
+                        входа</a>.
+                    </div>
+                {% endif %}
+            {% endwith %}
+            <form method="POST" action="/signup">
+                <div class="columns">
+                    <div class="column">
+                        <div class="field">
+                            <div class="control">
+                                <label>
+                                    Имя:
+                                    <input class="input is-medium" type="text" name="name" placeholder="Имя">
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                №ГОСБ:<br>
+                                <div class="select is-info">
+                                    <select name="gosb" id="gosb">
+                                        <option value="4157">(4157) Биробиджанское отделение</option>
+                                        <option value="9070">(9070) ГО по Хабаровскому краю</option>
+                                        <option value="8635">(8635) Приморское отделение</option>
+                                        <option value="8636">(8636) Благовещенское отделение</option>
+                                        <option value="8567">(8567) Ю.-Сахалинское отделение</option>
+                                        <option value="8645">(8645) С.-Восточное отделение</option>
+                                        <option value="8557">(8557) Чукотское отделение</option>
+                                        <option value="8556">(8556) Камчатское отделение</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column">
+                        <div class="field">
+                            <div class="control">
+                                <label>
+                                    Фамилия:
+                                    <input class="input is-medium" type="text" name="second-name" placeholder="Фамилия">
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <div class="control">
+                                <label>
+                                    №ВСП:
+                                    <input class="input is-medium" type="text" name="vsp"
+                                           placeholder="№ВСП">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        Должность:<br>
+                        <div class="select is-info">
+                            <select name="position" id="position">
+                                <option value="СМО">Старший менеджер по обслуживанию</option>
+                                <option value="ВМО">Ведущий менеджер по обслуживанию</option>
+                                <option value="МО">Менеджер по обслуживанию</option>
+                                <option value="СКМ">Старший клиентский менеджер</option>
+                                <option value="КМ">Клиентский менеджер</option>
+                                <option value="К">Консультант</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <label>
+                            Логин:
+                            <input class="input is-medium" type="text" name="login" placeholder="Логин">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <label>
+                            Пароль:
+                            <input class="input is-medium" type="password" name="password" placeholder="Пароль">
+                        </label>
+                    </div>
+                </div>
+                <div class="field">
+                    <input type="checkbox" class="custom-checkbox" id="happy" name="happy" value="yes">
+                    <label class="checkbox" for="happy">
+                        Запомнить меня
+                    </label>
+                </div>
+                <button class="button is-block is-info is-medium is-fullwidth" disabled>Зарегистрироваться и войти
+                </button>
+            </form>
+            <br>
+            Уже зарегистрированы? <a href="{{ url_for('auth.login') }}" class="orange-link">Войти</a>
+        </div>
+    </div>
+{% endblock %}
